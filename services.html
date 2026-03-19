@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Axiom — Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #050810;
+      --surface: #0d1120;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8eaf2;
+      --muted: #7a7f99;
+      --accent: #4f8cff;
+      --accent2: #a259ff;
+      --accent3: #ff6b6b;
+      --accent4: #00e5b0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 5%;
+      background: rgba(5, 8, 16, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.5rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a.active {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 9rem 5% 4rem;
+      text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse, rgba(79,140,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--accent);
+      border: 1px solid rgba(79,140,255,0.3);
+      padding: 0.35rem 1rem; border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800; line-height: 1.1;
+      margin-bottom: 1.2rem;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.1rem; color: var(--muted); max-width: 540px; margin: 0 auto;
+      line-height: 1.7;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    /* ─── SERVICES GRID ─── */
+    .services-section {
+      padding: 4rem 5% 6rem;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      animation: fadeUp 0.6s ease both;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(79,140,255,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    /* AI-generated-style image panels using CSS art */
+    .card-image {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-image canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    /* Fallback CSS gradient art for each service */
+    .img-ai {
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      position: relative;
+    }
+    .img-ai::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 40%, rgba(79,140,255,0.6) 0%, transparent 45%),
+        radial-gradient(circle at 75% 60%, rgba(162,89,255,0.5) 0%, transparent 40%),
+        radial-gradient(circle at 55% 20%, rgba(0,229,176,0.3) 0%, transparent 35%);
+      mix-blend-mode: screen;
+    }
+    .img-cloud {
+      background: linear-gradient(135deg, #0a1628, #1a3a5c, #0d2137);
+    }
+    .img-cloud::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 60% 30%, rgba(79,140,255,0.7) 0%, transparent 50%),
+        radial-gradient(circle at 20% 70%, rgba(0,229,176,0.4) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 80%, rgba(255,107,107,0.2) 0%, transparent 40%);
+      mix-blend-mode: screen;
+    }
+    .img-data {
+      background: linear-gradient(135deg, #0d1b0a, #1a3320, #0f2a1a);
+    }
+    .img-data::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 40% 50%, rgba(0,229,176,0.6) 0%, transparent 45%),
+        radial-gradient(circle at 80% 20%, rgba(79,140,255,0.4) 0%, transparent 35%),
+        radial-gradient(circle at 20% 80%, rgba(162,89,255,0.3) 0%, transparent 40%);
+      mix-blend-mode: screen;
+    }
+    .img-security {
+      background: linear-gradient(135deg, #1a0a0a, #2d1010, #1a0d0d);
+    }
+    .img-security::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,107,107,0.6) 0%, transparent 45%),
+        radial-gradient(circle at 20% 30%, rgba(255,180,50,0.3) 0%, transparent 35%),
+        radial-gradient(circle at 80% 70%, rgba(162,89,255,0.4) 0%, transparent 40%);
+      mix-blend-mode: screen;
+    }
+    .img-automation {
+      background: linear-gradient(135deg, #0a0a1a, #1a1040, #0d0a2a);
+    }
+    .img-automation::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 50% 60%, rgba(162,89,255,0.7) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(79,140,255,0.4) 0%, transparent 35%),
+        radial-gradient(ellipse at 20% 80%, rgba(0,229,176,0.3) 0%, transparent 40%);
+      mix-blend-mode: screen;
+    }
+    .img-consulting {
+      background: linear-gradient(135deg, #0a0f1a, #1a2240, #0d1530);
+    }
+    .img-consulting::after {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,180,50,0.5) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(79,140,255,0.5) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(0,229,176,0.3) 0%, transparent 35%);
+      mix-blend-mode: screen;
+    }
+
+    /* floating particles on each card image */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: float linear infinite;
+      opacity: 0.6;
+    }
+
+    .card-image .grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .card-image .label {
+      position: absolute; bottom: 12px; left: 14px;
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.5);
+      background: rgba(0,0,0,0.4); padding: 3px 8px; border-radius: 4px;
+    }
+
+    .card-body { padding: 1.6rem; }
+    .card-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1rem;
+    }
+    .card-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .card-body p {
+      font-size: 0.88rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      font-size: 0.7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 50px; letter-spacing: 0.05em;
+    }
+
+    /* ─── CTA BANNER ─── */
+    .cta {
+      margin: 0 5% 6rem;
+      padding: 3.5rem;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(79,140,255,0.12), rgba(162,89,255,0.1));
+      border: 1px solid rgba(79,140,255,0.2);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta::before {
+      content: '';
+      position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 300px;
+      background: radial-gradient(ellipse, rgba(79,140,255,0.15), transparent 70%);
+    }
+    .cta h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.5rem);
+      font-weight: 800; margin-bottom: 1rem;
+    }
+    .cta p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+    .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      padding: 0.8rem 2rem; border-radius: 50px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff; font-weight: 600; text-decoration: none;
+      font-size: 0.9rem; transition: opacity 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-outline {
+      padding: 0.8rem 2rem; border-radius: 50px;
+      border: 1px solid var(--border);
+      color: var(--text); text-decoration: none;
+      font-weight: 600; font-size: 0.9rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 2rem 5%;
+      border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.83rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes float {
+      0%   { transform: translateY(0) translateX(0); opacity: 0; }
+      10%  { opacity: 0.6; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(-120px) translateX(20px); opacity: 0; }
+    }
+
+    /* stagger cards */
+    .service-card:nth-child(1) { animation-delay: 0.1s; }
+    .service-card:nth-child(2) { animation-delay: 0.2s; }
+    .service-card:nth-child(3) { animation-delay: 0.3s; }
+    .service-card:nth-child(4) { animation-delay: 0.4s; }
+    .service-card:nth-child(5) { animation-delay: 0.5s; }
+    .service-card:nth-child(6) { animation-delay: 0.6s; }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 1rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo">Axiom</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">What We Offer</div>
+    <h1>Intelligent Solutions<br/>for a <span>Digital World</span></h1>
+    <p>From AI-powered automation to enterprise cloud infrastructure — we build the technology that moves your business forward.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+    <div class="services-grid">
+
+      <!-- Card 1: AI & Machine Learning -->
+      <div class="service-card">
+        <div class="card-image img-ai">
+          <div class="grid-overlay"></div>
+          <div class="particle" style="width:6px;height:6px;background:#4f8cff;left:20%;top:60%;animation-duration:4s;animation-delay:0s;"></div>
+          <div class="particle" style="width:4px;height:4px;background:#a259ff;left:50%;top:70%;animation-duration:5s;animation-delay:1s;"></div>
+          <div class="particle" style="width:5px;height:5px;background:#00e5b0;left:75%;top:80%;animation-duration:3.5s;animation-delay:0.5s;"></div>
+          <div class="label">AI & Machine Learning</div>
+        </div>
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(79,140,255,0.15);">🤖</div>
+          <h3>AI & Machine Learning</h3>
+          <p>Custom-built AI models that learn from your data, automate decisions, and surface insights your team can act on — instantly.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(79,140,255,0.12);color:#4f8cff;">Neural Networks</span>
+            <span class="tag" style="background:rgba(79,140,255,0.12);color:#4f8cff;">NLP</span>
+            <span class="tag" style="background:rgba(79,140,255,0.12);color:#4f8cff;">Computer Vision</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Cloud Infrastructure -->
+      <div class="service-card">
+        <div class="card-image img-cloud">
+          <div class="grid-overlay"></div>
+          <div class="particle" style="width:5px;height:5px;background:#00e5b0;left:30%;top:65%;animation-duration:4.5s;animation-delay:0.3s;"></div>
+          <div class="particle" style="width:7px;height:7px;background:#4f8cff;left:65%;top:75%;animation-duration:3.8s;animation-delay:1.2s;"></div>
+          <div class="particle" style="width:4px;height:4px;background:#ff6b6b;left:80%;top:55%;animation-duration:5.2s;animation-delay:0.8s;"></div>
+          <div class="label">Cloud Infrastructure</div>
+        </div>
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(0,229,176,0.15);">☁️</div>
+          <h3>Cloud Infrastructure</h3>
+          <p>Scalable, secure cloud environments on AWS, Azure, or GCP. We architect and manage your infrastructure so you never have to worry about downtime.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(0,229,176,0.12);color:#00e5b0;">AWS</span>
+            <span class="tag" style="background:rgba(0,229,176,0.12);color:#00e5b0;">Azure</span>
+            <span class="tag" style="background:rgba(0,229,176,0.12);color:#00e5b0;">DevOps</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Data Analytics -->
+      <div class="service-card">
+        <div class="card-image img-data">
+          <div class="grid-overlay"></div>
+          <div class="particle" style="width:6px;height:6px;background:#00e5b0;left:25%;top:70%;animation-duration:4.2s;animation-delay:0.6s;"></div>
+          <div class="particle" style="width:4px;height:4px;background:#a259ff;left:60%;top:60%;animation-duration:5s;animation-delay:0.2s;"></div>
+          <div class="label">Data Analytics</div>
+        </div>
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(0,229,176,0.15);">📊</div>
+          <h3>Data Analytics & BI</h3>
+          <p>Transform raw data into powerful visual dashboards. Understand your customers, forecast trends, and make smarter decisions backed by real numbers.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(0,229,176,0.12);color:#00e5b0;">Power BI</span>
+            <span class="tag" style="background:rgba(0,229,176,0.12);color:#00e5b0;">Tableau</span>
+            <span class="tag" style="background:rgba(0,229,176,0.12);color:#00e5b0;">Predictive Models</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Cybersecurity -->
+      <div class="service-card">
+        <div class="card-image img-security">
+          <div class="grid-overlay"></div>
+          <div class="particle" style="width:5px;height:5px;background:#ff6b6b;left:40%;top:65%;animation-duration:3.6s;animation-delay:0.4s;"></div>
+          <div class="particle" style="width:6px;height:6px;background:#ffb432;left:70%;top:75%;animation-duration:4.8s;animation-delay:1s;"></div>
+          <div class="label">Cybersecurity</div>
+        </div>
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(255,107,107,0.15);">🛡️</div>
+          <h3>Cybersecurity</h3>
+          <p>End-to-end protection for your digital assets. From penetration testing to 24/7 threat monitoring — we keep your business safe from every angle.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(255,107,107,0.12);color:#ff6b6b;">Pen Testing</span>
+            <span class="tag" style="background:rgba(255,107,107,0.12);color:#ff6b6b;">SOC</span>
+            <span class="tag" style="background:rgba(255,107,107,0.12);color:#ff6b6b;">Compliance</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Automation -->
+      <div class="service-card">
+        <div class="card-image img-automation">
+          <div class="grid-overlay"></div>
+          <div class="particle" style="width:7px;height:7px;background:#a259ff;left:35%;top:72%;animation-duration:4s;animation-delay:0.7s;"></div>
+          <div class="particle" style="width:4px;height:4px;background:#4f8cff;left:68%;top:60%;animation-duration:5.5s;animation-delay:0.2s;"></div>
+          <div class="label">Automation</div>
+        </div>
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(162,89,255,0.15);">⚡</div>
+          <h3>Process Automation</h3>
+          <p>Eliminate repetitive tasks with intelligent automation. We integrate your tools, automate your workflows, and give your team back hours every week.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(162,89,255,0.12);color:#a259ff;">RPA</span>
+            <span class="tag" style="background:rgba(162,89,255,0.12);color:#a259ff;">API Integration</span>
+            <span class="tag" style="background:rgba(162,89,255,0.12);color:#a259ff;">Zapier / n8n</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Tech Consulting -->
+      <div class="service-card">
+        <div class="card-image img-consulting">
+          <div class="grid-overlay"></div>
+          <div class="particle" style="width:5px;height:5px;background:#ffb432;left:45%;top:68%;animation-duration:4.3s;animation-delay:0.9s;"></div>
+          <div class="particle" style="width:6px;height:6px;background:#4f8cff;left:25%;top:55%;animation-duration:3.9s;animation-delay:0.3s;"></div>
+          <div class="label">Tech Consulting</div>
+        </div>
+        <div class="card-body">
+          <div class="card-icon" style="background:rgba(255,180,50,0.15);">💡</div>
+          <h3>Tech Consulting</h3>
+          <p>Not sure where to start? Our experts map out your digital transformation, identify quick wins, and build a long-term technology roadmap tailored to your goals.</p>
+          <div class="card-tags">
+            <span class="tag" style="background:rgba(255,180,50,0.12);color:#ffb432;">Strategy</span>
+            <span class="tag" style="background:rgba(255,180,50,0.12);color:#ffb432;">Architecture</span>
+            <span class="tag" style="background:rgba(255,180,50,0.12);color:#ffb432;">Roadmapping</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <h2>Ready to get started?</h2>
+    <p>Tell us about your project and we'll find the perfect solution for you.</p>
+    <div class="btn-group">
+      <a href="contact.html" class="btn-primary">Contact Us</a>
+      <a href="index.html" class="btn-outline">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Axiom Technologies. All rights reserved. &nbsp;|&nbsp; <a href="contact.html">Get in Touch</a></p>
+  </footer>
+
+</body>
+</html>
