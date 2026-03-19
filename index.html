@@ -3,183 +3,199 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AXIOM — Simple Tech Edition</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Bebas+Neue&family=DM+Mono&display=swap" rel="stylesheet">
+<title>AXIOM — Tech for the Edge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1a1a1a;
-    --paper: #ffffff;
-    --acid: #c8f53e;
-    --muted: #666666;
+    --bg: #050810;
+    --surface: #0d1120;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8eaf2;
+    --muted: #7a7f99;
+    --accent: #4f8cff;
+    --accent2: #a259ff;
+    --accent3: #ff6b6b;
+    --grad: linear-gradient(90deg, var(--accent), var(--accent2));
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
     line-height: 1.6;
-    padding: 0 1.5rem;
+    overflow-x: hidden;
   }
 
   /* NAV */
   nav {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #eee;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(5, 8, 16, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
   }
 
   .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.8rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.4rem;
+    background: var(--grad);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     text-decoration: none;
-    color: var(--ink);
-    letter-spacing: 1px;
   }
 
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  
   .nav-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    text-decoration: none;
-    color: var(--muted);
-    margin-left: 1.5rem;
-    text-transform: uppercase;
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
   }
+
+  .nav-links a:hover { color: var(--text); }
+
+  .btn-subscribe {
+    background: var(--grad);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .btn-subscribe:hover { transform: translateY(-1px); opacity: 0.9; }
 
   /* HERO */
-  header {
-    max-width: 800px;
-    margin: 4rem auto;
+  .hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10rem 1.5rem 4rem;
+    text-align: center;
   }
 
-  .tag {
+  .hero-tag {
     font-family: 'DM Mono', monospace;
     font-size: 0.75rem;
-    color: var(--muted);
+    color: var(--accent);
     text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1.5rem;
     display: block;
-    margin-bottom: 1rem;
   }
 
   h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3rem, 10vw, 5rem);
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    font-weight: 800;
     line-height: 1;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
+  h1 span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  /* CONTENT */
-  main {
-    max-width: 800px;
+  /* ARTICLE CONTENT */
+  .content-wrapper {
+    max-width: 720px;
     margin: 0 auto;
+    padding-bottom: 6rem;
   }
 
   .lead {
     font-size: 1.25rem;
+    color: var(--text);
     font-weight: 500;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
   }
 
-  p {
-    margin-bottom: 1.5rem;
-    color: #333;
+  p { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+
+  .quote-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 2.5rem;
+    border-radius: 24px;
+    margin: 3rem 0;
+    position: relative;
   }
 
-  .highlight-box {
-    background: #f9f9f9;
-    padding: 2rem;
-    border-left: 4px solid var(--acid);
-    margin: 2rem 0;
+  .quote-card p {
+    color: var(--text);
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .quote-card cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-style: normal;
+    text-transform: uppercase;
   }
 
   /* FOOTER */
   footer {
-    max-width: 800px;
-    margin: 6rem auto 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border);
+    padding: 4rem 5% 2rem;
     text-align: center;
+    background: var(--bg);
   }
 
-  .footer-links {
-    margin-bottom: 2rem;
-  }
-
+  .footer-links { margin-bottom: 2rem; }
   .footer-links a {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
+    color: var(--muted);
     text-decoration: none;
-    color: var(--ink);
     margin: 0 1rem;
-    text-transform: uppercase;
-    font-weight: bold;
+    font-size: 0.9rem;
+    font-weight: 500;
   }
+
+  .footer-links a:hover { color: var(--accent); }
 
   .copyright {
     font-family: 'DM Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
+    font-size: 0.75rem;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 
   @media (max-width: 600px) {
-    h1 { font-size: 3.5rem; }
-    nav { flex-direction: column; gap: 1rem; }
+    .nav-links { display: none; } /* Simplified for mobile */
+    .hero { padding-top: 8rem; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="logo">AXIOM</a>
+  <a href="#" class="logo">Axiom</a>
   <div class="nav-links">
     <a href="services.html">Services</a>
     <a href="contact.html">Contact</a>
+    <a href="#" class="btn-subscribe">Subscribe</a>
   </div>
 </nav>
 
-<header>
-  <span class="tag">Deep Dive // 2026</span>
-  <h1>The Silicon Brain Race</h1>
-  <div class="meta">By Nadia Petrov • March 17, 2026</div>
+<header class="hero">
+  <span class="hero-tag">Infrastructure Deep Dive // 2026</span>
+  <h1>The Silicon <br><span>Brain Race</span></h1>
 </header>
 
-<main>
+<main class="content-wrapper">
   <p class="lead">
-    The chip wars are no longer a metaphor. The scramble to build the next generation of AI accelerators has become the defining technological contest of our era.
+    The chip wars are no longer a metaphor. From TSMC's fabs in Arizona to hyperscaler-owned silicon startups, the scramble to build the next generation of AI accelerators has become the defining technological contest of our era.
   </p>
 
   <p>
-    For the better part of a decade, the AI industry ran on commodity GPUs. Today, every major cloud provider maintains its own custom silicon program. Google has its TPUs, and Amazon has Trainium.
-  </p>
-
-  <div class="highlight-box">
-    "The bottleneck is no longer the algorithm. It's the physical substrate the algorithm runs on."
-  </div>
-
-  <p>
-    Three forces converged to make custom silicon inevitable: predictable workloads, ballooning costs, and the need for lower latency. The future belongs to those who control the hardware.
-  </p>
-</main>
-
-<footer>
-  <div class="footer-links">
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-    <a href="#">Privacy</a>
-  </div>
-  <p class="copyright">© 2026 AXIOM MEDIA INC. — BUILT FOR CURIOSITY</p>
-</footer>
-
-</body>
-</html>
+    For the better part of a decade, the AI industry ran on commodity GPUs. Today, every major cloud provider maintains its own
