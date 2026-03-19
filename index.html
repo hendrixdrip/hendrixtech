@@ -49,142 +49,64 @@
   }
 
   .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
-  
-  .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: 0.9rem; font-weight: 500;
-    transition: color 0.2s;
-  }
-
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
   .nav-links a:hover { color: var(--text); }
 
   .btn-subscribe {
     background: var(--grad);
-    color: white;
-    padding: 0.5rem 1.2rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.2s, opacity 0.2s;
+    color: white; padding: 0.5rem 1.2rem; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600; text-decoration: none;
   }
-
-  .btn-subscribe:hover { transform: translateY(-1px); opacity: 0.9; }
 
   /* HERO */
-  .hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 10rem 1.5rem 4rem;
-    text-align: center;
-  }
+  .hero { max-width: 900px; margin: 0 auto; padding: 10rem 1.5rem 4rem; text-align: center; }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: block; }
+  h1 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 800; line-height: 1; margin-bottom: 1rem; }
+  h1 span { background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-  .hero-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 1.5rem;
-    display: block;
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 8vw, 5.5rem);
-    font-weight: 800;
-    line-height: 1;
-    margin-bottom: 2rem;
-  }
-
-  h1 span {
-    background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-
-  /* ARTICLE CONTENT */
-  .content-wrapper {
-    max-width: 720px;
-    margin: 0 auto;
-    padding-bottom: 6rem;
-  }
-
-  .lead {
-    font-size: 1.25rem;
-    color: var(--text);
-    font-weight: 500;
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-  }
-
+  /* CONTENT */
+  .content-wrapper { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  .section-divider { display: flex; align-items: center; gap: 1rem; margin: 3rem 0; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--accent2); text-transform: uppercase; }
+  .section-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  
+  h2 { font-family: 'Syne', sans-serif; color: var(--text); margin: 2rem 0 1rem; }
   p { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
+  .lead { font-size: 1.25rem; color: var(--text); font-weight: 500; margin-bottom: 2.5rem; }
 
-  .quote-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2.5rem;
-    border-radius: 24px;
-    margin: 3rem 0;
-    position: relative;
-  }
+  .quote-card { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; border-radius: 24px; margin: 3rem 0; }
+  .quote-card p { color: var(--text); font-weight: 600; font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .quote-card cite { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--accent); font-style: normal; }
 
-  .quote-card p {
-    color: var(--text);
-    font-weight: 600;
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .quote-card cite {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
-    font-style: normal;
-    text-transform: uppercase;
-  }
+  /* RELATED STRIP */
+  .related-strip { background: var(--surface); padding: 4rem 5%; border-top: 1px solid var(--border); }
+  .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; max-width: 1100px; margin: 2rem auto 0; }
+  .related-card { background: var(--bg); padding: 1.5rem; border-radius: 16px; border: 1px solid var(--border); text-decoration: none; transition: 0.3s; }
+  .related-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .related-card h4 { color: var(--text); font-size: 1rem; margin-top: 0.5rem; }
 
   /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 4rem 5% 2rem;
-    text-align: center;
-    background: var(--bg);
-  }
+  footer { background: #03050a; padding: 5rem 5% 2rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; }
+  .footer-brand .logo { font-size: 2rem; display: block; margin-bottom: 1rem; }
+  .footer-col h4 { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; margin-bottom: 1.5rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.8rem; }
+  .footer-col ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
+  .footer-col ul a:hover { color: var(--text); }
 
-  .footer-links { margin-bottom: 2rem; }
-  .footer-links a {
-    color: var(--muted);
-    text-decoration: none;
-    margin: 0 1rem;
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
+  .footer-bottom { text-align: center; padding: 2rem; border-top: 1px solid var(--border); background: #03050a; font-family: 'DM Mono', monospace; font-size: 0.7rem; color: #444; }
 
-  .footer-links a:hover { color: var(--accent); }
-
-  .copyright {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: #444;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  @media (max-width: 600px) {
-    .nav-links { display: none; } /* Simplified for mobile */
-    .hero { padding-top: 8rem; }
-  }
+  @media (max-width: 800px) { footer { grid-template-columns: 1fr; gap: 2rem; } }
 </style>
 </head>
 <body>
 
 <nav>
   <a href="#" class="logo">Axiom</a>
-  <div class="nav-links">
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-    <a href="#" class="btn-subscribe">Subscribe</a>
-  </div>
+  <ul class="nav-links">
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#" class="btn-subscribe">Subscribe</a></li>
+  </ul>
 </nav>
 
 <header class="hero">
@@ -193,9 +115,66 @@
 </header>
 
 <main class="content-wrapper">
-  <p class="lead">
-    The chip wars are no longer a metaphor. From TSMC's fabs in Arizona to hyperscaler-owned silicon startups, the scramble to build the next generation of AI accelerators has become the defining technological contest of our era.
-  </p>
+  <p class="lead">The chip wars are no longer a metaphor. From TSMC's fabs in Arizona to hyperscaler-owned silicon startups, the scramble to build AI accelerators has become the defining technological contest of our era.</p>
 
-  <p>
-    For the better part of a decade, the AI industry ran on commodity GPUs. Today, every major cloud provider maintains its own
+  <div class="section-divider">§ 01 — Infrastructure</div>
+  <p>Today, every major cloud provider maintains its own custom silicon program. Google has its TPUs, Amazon has Trainium, and Microsoft is deep in partnership with OpenAI. These aren't side projects—they are billion-dollar bets on vertical integration.</p>
+  
+  <div class="quote-card">
+    <p>"The bottleneck is no longer the algorithm. It's the physical substrate the algorithm runs on."</p>
+    <cite>— Dr. Yael Moran, MIT</cite>
+  </div>
+
+  <h2>Why Now?</h2>
+  <p>Three forces converged: transformer architectures created predictable workloads, training costs ballooned beyond GPU pricing limits, and inference latency became a critical product differentiator.</p>
+
+  <div class="section-divider">§ 02 — The Human Cost</div>
+  <p>Building this infrastructure is a geopolitical challenge. Rare earth materials and lithography equipment are controlled by a handful of nations. The chip race is playing out against a backdrop of export controls and supply chain fragility.</p>
+</main>
+
+<section class="related-strip">
+  <div style="max-width:1100px; margin:0 auto;">
+    <h3 style="font-family:Syne;">Keep Reading</h3>
+    <div class="related-grid">
+      <a href="#" class="related-card">
+        <span style="color:var(--accent); font-size:0.7rem; font-family:DM Mono;">HARDWARE</span>
+        <h4>Inside Groq's LPU: A Deep Dive</h4>
+      </a>
+      <a href="#" class="related-card">
+        <span style="color:var(--accent2); font-size:0.7rem; font-family:DM Mono;">POLICY</span>
+        <h4>Export Controls in the Global Stack</h4>
+      </a>
+      <a href="#" class="related-card">
+        <span style="color:var(--accent3); font-size:0.7rem; font-family:DM Mono;">DEV</span>
+        <h4>ROCm vs. CUDA in 2026</h4>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <a href="#" class="logo">Axiom</a>
+    <p style="color:var(--muted); font-size:0.9rem; margin-top:1rem;">Technology reporting for engineers, founders, and people who ship things.</p>
+  </div>
+  <div class="footer-col">
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h4>Legal</h4>
+    <ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Cookie Policy</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">© 2026 AXIOM MEDIA INC. — BUILT FOR CURIOSITY</div>
+
+</body>
+</html>
